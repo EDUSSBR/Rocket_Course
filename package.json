@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "test:staged": "jest --passWithNoTests --runInBand",
     "test": "jest -- ",
     "lint-staged": "eslint --fix",
@@ -42,7 +42,9 @@
     "typescript": "^3.9.10"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "@types/uuid": "^8.3.3",
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix"
