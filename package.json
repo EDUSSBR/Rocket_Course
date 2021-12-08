@@ -8,7 +8,8 @@
     "test:staged": "jest --passWithNoTests --runInBand",
     "test": "jest -- ",
     "lint-staged": "eslint --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli"
   },
   "repository": {
     "type": "git",
