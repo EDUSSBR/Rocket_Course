@@ -1,9 +1,9 @@
 import { v4 as uuidV4 } from 'uuid'
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm'
 
 @Entity('categories')
 export class Category {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   id?: string
 
   @Column()
