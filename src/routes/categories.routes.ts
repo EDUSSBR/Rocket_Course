@@ -16,6 +16,6 @@ categoriesRoutes.post('/', createCategoryController.handle)
 
 categoriesRoutes.get('/', listCategoryController.handle)
 
-categoriesRoutes.post('/import', importCategoryController.handle)
+categoriesRoutes.post('/import', upload.single('file'), importCategoryController.handle)
 
 export { categoriesRoutes }
