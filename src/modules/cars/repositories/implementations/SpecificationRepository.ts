@@ -9,8 +9,7 @@ export class SpecificationRepository implements ISpecificationRepository {
   }
 
   async create ({ name, description }: ICreateSpecificationDTO): Promise<void> {
-    const specification = new Specification()
-    this.repository.create({
+    const specification = this.repository.create({
       name,
       description
     })
