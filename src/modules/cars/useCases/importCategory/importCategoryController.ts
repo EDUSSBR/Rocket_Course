@@ -2,9 +2,9 @@ import { ImportCategoryUseCase } from './importCategoryUseCase'
 import Response from 'express'
 export class ImportCategoryController {
   constructor (private readonly importCategoryUseCase: ImportCategoryUseCase) {}
-  handle (req: Express.Multer.File, resp: Response): Response {
+  async handle (req: Express.Multer.File, resp: Response): Promise<Response> {
     const { file } = req
-    this.importCategoryUseCase.execute(file)
+    await this.importCategoryUseCase.execute(file)
     return resp.status(200).send()
   }
 }
