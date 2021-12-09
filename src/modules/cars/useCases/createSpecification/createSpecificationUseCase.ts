@@ -7,7 +7,7 @@ interface IRequest {
 @injectable()
 export class CreateSpecificationUseCase {
   constructor (
-    @inject('CreateSpecification')
+    @inject('SpecificationsRepository')
     private readonly specificationsRepository: ISpecificationRepository) {}
 
   async execute ({ name, description }: IRequest): Promise<void> {
