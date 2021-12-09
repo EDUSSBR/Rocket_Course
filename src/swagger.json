@@ -72,6 +72,74 @@
                     }
                 }
             }
+        },
+        "/categories/import":{
+            "post":{
+                "tags":["Category"],
+                "description": "Import categories from csv file",
+                "summary": "Import a list of categories from csv file",
+                "requestBody":{
+                    "content":{
+                        "multipart/form-data": {
+                            "schema": {
+                                "type":"object",
+                                "properties":{
+                                    "file": {
+                                        "type":"string",
+                                        "format":"binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description":"Categories imported successfully"
+                    },
+                    "500": { 
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/specifications":{
+            "post": {
+                "tags": ["Specifications"],
+                "summary": "Create a specification",
+                "description": "Create a new specification",
+                "requestBody":{
+                    "content" : {
+                       "specification/json": {
+                           "schema": {
+                               "$ref": "#definitions/Specifications"
+                           }
+                           }
+                       }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description":"Specification created."
+                    },
+                    "500":{
+                        "description": "Server problems"
+                    }
+                }
+            }
+        }
+    ,
+        "definitions":{
+            "Specifications":{
+                "type":"object",
+                "properties":{
+                    "name": { 
+                        "type":"string"
+                    },
+                    "description": {
+                        "type":"string"
+                    }
+                }
         }
     }
 }
