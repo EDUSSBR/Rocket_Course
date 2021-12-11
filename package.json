@@ -24,6 +24,7 @@
   "homepage": "https://github.com/EDUSSBR/Rocket_Course#readme",
   "devDependencies": {
     "@jest/types": "^27.2.5",
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.3",
     "@types/multer": "^1.4.7",
@@ -46,6 +47,7 @@
     "typescript": "^3.9.10"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "csv-parse": "^5.0.3",
     "express": "^4.17.1",
     "multer": "^1.4.3",
