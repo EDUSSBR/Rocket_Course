@@ -14,6 +14,11 @@ export class UserRepository implements IUserRepository {
     return user
   }
 
+  async findById (id: string): Promise<User> {
+    const user = await this.repository.findOne(id)
+    return user
+  }
+
   async create (data: ICreateUserDTO): Promise<void> {
     const { name, email, driverLicense, password } = data
     const user = this.repository.create({
