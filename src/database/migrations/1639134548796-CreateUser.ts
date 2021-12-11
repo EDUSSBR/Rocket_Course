@@ -25,7 +25,7 @@ export class CreateUser1639134548796 implements MigrationInterface {
             type: 'varchar'
           },
           {
-            name: 'driver_license',
+            name: 'driverLicense',
             type: 'varchar'
           },
           {
@@ -42,5 +42,6 @@ export class CreateUser1639134548796 implements MigrationInterface {
   }
 
   public async down (queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropTable('users')
   }
 }
