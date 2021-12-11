@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn, CreateDateColumn } from 'typeorm'
 import { v4 as uuidV4 } from 'uuid'
 
 @Entity('users')
-export class Account {
+export class User {
   @PrimaryColumn()
   id?: string
 
@@ -16,7 +16,7 @@ export class Account {
   password: string
 
   @Column()
-  driver_license: string
+  driverLicense: string
 
   @CreateDateColumn()
   created_at: Date
@@ -27,6 +27,9 @@ export class Account {
   constructor () {
     if (!this.id) {
       this.id = uuidV4()
+    }
+    if (!this.isAdmin) {
+      this.isAdmin = false
     }
   }
 }
