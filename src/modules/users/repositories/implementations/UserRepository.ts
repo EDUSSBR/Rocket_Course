@@ -9,9 +9,9 @@ export class UserRepository implements IUserRepository {
     this.repository = getRepository(User)
   }
 
-  async findByEmail (email: string): Promise<boolean> {
+  async findByEmail (email: string): Promise<User> {
     const user = await this.repository.findOne({ email })
-    return !!user
+    return user
   }
 
   async create (data: ICreateUserDTO): Promise<void> {
