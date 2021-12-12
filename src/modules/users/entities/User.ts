@@ -22,6 +22,9 @@ export class User {
   created_at: Date
 
   @Column()
+  avatar?: string
+
+  @Column()
   isAdmin: boolean
 
   constructor () {
@@ -30,6 +33,9 @@ export class User {
     }
     if (!this.isAdmin) {
       this.isAdmin = false
+    }
+    if (!this.avatar) {
+      this.avatar = 'Sem avatar'
     }
   }
 }
