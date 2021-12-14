@@ -1,4 +1,5 @@
 import { ICategoriesRepository } from '../../repositories/ICategoriesRepository'
+import 'reflect-metadata'
 import { inject, injectable } from 'tsyringe'
 import { AppError } from '../../../../errors/AppError'
 
