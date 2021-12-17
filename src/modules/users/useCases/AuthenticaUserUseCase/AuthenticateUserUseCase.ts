@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe'
 import { IUserRepository } from '../../repositories/IUserRepository'
 import { compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
-import { AppError } from '../../../../errors/AppError'
+import { AppError } from '../../../../shared/errors/AppError'
 
 interface IResponse {
   user: {
