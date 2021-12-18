@@ -1,3 +1,5 @@
+
+import 'reflect-metadata'
 import { inject, injectable } from 'tsyringe'
 import { AppError } from '../../../../shared/errors/AppError'
 import { Car } from '../../infra/typeorm/entities/Car'
@@ -13,10 +15,10 @@ interface IRequest {
   category_id: string
 }
 
-// @injectable()
+@injectable()
 export class CreateCarUseCase {
   constructor (
-    // @inject('CarsRepository')
+    @inject('CarsRepository')
     private readonly carsRepository: ICarsRepository
   ) {}
 
