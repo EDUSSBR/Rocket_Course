@@ -11,7 +11,7 @@ describe('Create Car', () => {
     createCarUseCase = new CreateCarUseCase(carsRepositoryInMemory)
   })
   it('Should be able to create a new car', async () => {
-    await createCarUseCase.execute(
+    const car = await createCarUseCase.execute(
       {
         name: 'Car0 name',
         description: 'Car0 description',
@@ -22,6 +22,7 @@ describe('Create Car', () => {
         category_id: '0category'
       }
     )
+    expect(car).toBeTruthy()
   })
   it('Should not be able to create a car that is already created (check with license plate)', async () => {
     void expect(async () => {
@@ -44,5 +45,19 @@ describe('Create Car', () => {
         category_id: 'category1'
       })
     }).rejects.toBeInstanceOf(AppError)
+  })
+  it('Should create a car with available true by default', async () => {
+    const car = await createCarUseCase.execute(
+      {
+        name: 'Car0 name',
+        description: 'Car0 description',
+        daily_rate: 1000,
+        license_plate: 'abd-1234',
+        fine_amount: 62,
+        brand: 'Brand0',
+        category_id: '0category'
+      }
+    )
+    expect(car.available).toBeTruthy()
   })
 })
