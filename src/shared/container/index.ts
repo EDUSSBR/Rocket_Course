@@ -5,7 +5,10 @@ import { SpecificationRepository } from '../../modules/cars/infra/typeorm/reposi
 import { UserRepository } from '../../modules/users/infra/typeorm/repositories/UserRepository'
 import { IUserRepository } from '../../modules/users/repositories/IUserRepository'
 import { CategoriesRepository } from '../../modules/cars/infra/typeorm/repositories/CategoriesRepository'
+import { CarsRepository } from '../../modules/cars/infra/typeorm/repositories/CarsRepository'
+import { ICarsRepository } from '../../modules/cars/repositories/ICarsRepository'
 
 container.registerSingleton<ICategoriesRepository>('CategoriesRepository', CategoriesRepository)
 container.registerSingleton<ISpecificationRepository>('SpecificationsRepository', SpecificationRepository)
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository)
+container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository)
