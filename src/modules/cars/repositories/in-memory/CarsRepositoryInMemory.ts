@@ -10,6 +10,10 @@ export class CarsRepositoryInMemory implements ICarsRepository {
     return car
   }
 
+  async findAvailable (): Promise<Car[]> {
+    return this.cars.filter(car => car.available)
+  }
+
   async create ({
     name,
     description,
