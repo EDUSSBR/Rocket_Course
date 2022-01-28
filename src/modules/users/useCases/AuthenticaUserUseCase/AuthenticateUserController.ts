@@ -9,7 +9,7 @@ export class AuthenticateUserController {
       const token = await authenticateUserUseCase.execute({ email, password })
       return resp.status(200).json(token)
     } catch (e) {
-      return resp.status(200).json(e)
+      return resp.status(400).json(e)
     }
   }
 }
