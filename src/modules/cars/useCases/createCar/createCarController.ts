@@ -1,5 +1,7 @@
 import { CreateCarUseCase } from './createCarUseCase'
 import { container } from 'tsyringe'
+import { Request, Response } from 'express'
+
 export class CreateCarController {
   async handle (req: Request, resp: Response): Promise<Response> {
     const {
