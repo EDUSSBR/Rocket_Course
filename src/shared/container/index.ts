@@ -9,9 +9,13 @@ import { CarsRepository } from '../../modules/cars/infra/typeorm/repositories/Ca
 import { ICarsRepository } from '../../modules/cars/repositories/ICarsRepository'
 import { ICarsImagesRepository } from '../../modules/cars/repositories/ICarsImagesRepository'
 import { CarsImagesRepository } from '../../modules/cars/infra/typeorm/repositories/CarsImagesRepository'
+import { IRentalsRepository } from '../../modules/rentals/repositories/IRentalsRepository'
+import { RentalsRepository } from '../../modules/rentals/infra/typeorm/repositories/RentalsRepository'
+import './providers'
 
 container.registerSingleton<ICategoriesRepository>('CategoriesRepository', CategoriesRepository)
 container.registerSingleton<ISpecificationRepository>('SpecificationsRepository', SpecificationRepository)
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository)
 container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository)
 container.registerSingleton<ICarsImagesRepository>('CarsImagesRepository', CarsImagesRepository)
+container.registerSingleton<IRentalsRepository>('RentalsRepository', RentalsRepository)
