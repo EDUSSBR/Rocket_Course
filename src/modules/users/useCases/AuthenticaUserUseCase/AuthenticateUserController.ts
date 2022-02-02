@@ -1,5 +1,6 @@
 import { AuthenticateUserUseCase } from './AuthenticateUserUseCase'
 import { container } from 'tsyringe'
+import { Request, Response } from 'express'
 
 export class AuthenticateUserController {
   async handle (req: Request, resp: Response): Promise<Response> {
