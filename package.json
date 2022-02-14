@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "test:staged": "jest --passWithNoTests --runInBand",
-    "test": "NODE_ENV=test jest --runInBand -- ",
+    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles -- ",
     "lint-staged": "eslint --fix",
     "prepare": "husky install",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",

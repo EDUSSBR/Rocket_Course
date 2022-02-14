@@ -12,7 +12,7 @@ export class CreateCarImages1643414374746 implements MigrationInterface {
         },
         {
           name: 'car_id',
-          type: 'varchar'
+          type: 'uuid'
         },
         {
           name: 'image_name',
