@@ -1,0 +1,45 @@
+import { Connection } from 'typeorm'
+import createConnection from '../../../../shared/infra/typeorm/index'
+import { v4 as uuid } from 'uuid'
+import { hash } from 'bcrypt'
+import request from 'supertest'
+import { app } from '../../../../shared/infra/http/app'
+
+let connection: Connection
+describe('List Category', () => {
+  beforeAll(async () => {
+    connection = await createConnection()
+    await connection.runMigrations()
+
+    const id = uuid()
+    const password = await hash('admin', 12)
+
+    await connection.query(
+              `INSERT INTO USERS(id, name, email, password, "isAdmin", created_at, "driverLicense", avatar)
+              values('${id}', 'admin', 'admin@rentx.com.br', '${password}', 'true', 'now()', 'kkkkkk', 'sem avatar')`
+    )
+  })
+
+  afterAll(async () => {
+    await connection.dropDatabase()
+    await connection.close()
+  })
+
+  it('Should list all categories', async () => {
+    const responseToken = await request(app).post('/sessions').send({
+      email: 'admin@rentx.com.br',
+      password: 'admin'
+    })
+
+    const { token } = responseToken.body
+    await request(app).post('/categories').send({
+      name: 'Category Supertest',
+      description: 'Category Supertest'
+    }).set({ Authorization: `Bearer ${token}` })
+
+    const response = await request(app).get('/categories')
+    expect(response.status).toBe(200)
+    console.log(response.body)
+    expect(response.body.length).toBe(1)
+  })
+})
