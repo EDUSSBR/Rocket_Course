@@ -3,6 +3,7 @@ import 'reflect-metadata'
 import { inject, injectable } from 'tsyringe'
 import { IDateProvider } from '../../../../shared/container/providers/DateProviders/IDateProvider'
 import { AppError } from '../../../../shared/errors/AppError'
+import { ICarsRepository } from '../../../cars/repositories/ICarsRepository'
 import { Rental } from '../../infra/typeorm/entities/Rental'
 import { IRentalsRepository } from '../../repositories/IRentalsRepository'
 
@@ -19,11 +20,18 @@ export class CreateRentalUseCase {
     private readonly rentalsRepository: IRentalsRepository,
 
     @inject('DayjsDateProvider')
-    private readonly dateProvider: IDateProvider
+    private readonly dateProvider: IDateProvider,
+
+    @inject('CarsRepository')
+    private readonly carsRepository: ICarsRepository
   ) {}
 
   async execute ({ user_id, car_id, expected_return_date }: IRequest): Promise<Rental> {
     const minimumHours = 24
+    const foundCar = await this.carsRepository.findById(car_id)
+    if (!foundCar) {
+      throw new AppError('Cannot find this car!')
+    }
     const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(car_id)
     if (carUnavailable) {
       throw new AppError('Car is unavailable')
@@ -42,6 +50,8 @@ export class CreateRentalUseCase {
       car_id,
       expected_return_date
     })
+
+    await this.carsRepository.updateAvailable(car_id, false)
 
     return rental
   }
