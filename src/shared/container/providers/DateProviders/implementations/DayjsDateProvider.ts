@@ -24,4 +24,16 @@ export class DayjsDateProvider implements IDateProvider {
     const start_date_utc = this.covertToUtc(start_date)
     return dayjs(end_date_utc).diff(start_date_utc, 'days')
   }
+
+  addDays (days: number): Date {
+    return dayjs().add(days, 'days').toDate()
+  }
+
+  addHours (hours: number): Date {
+    return dayjs().add(hours, 'hour').toDate()
+  }
+
+  compareIfBefore (start_date: Date, end_date: Date): boolean {
+    return dayjs(start_date).isBefore(end_date)
+  }
 }
