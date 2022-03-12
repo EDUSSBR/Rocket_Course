@@ -10,6 +10,10 @@ interface IPayload {
   email: string
 }
 
+interface ITokenResponse{
+  token: string
+  refresh_token: string
+}
 @injectable()
 export class RefreshTokenUseCase {
   constructor (
@@ -19,7 +23,7 @@ export class RefreshTokenUseCase {
     private readonly dateProvider: IDateProvider
   ) {}
 
-  async execute (token: string): Promise<string> {
+  async execute (token: string): Promise<ITokenResponse> {
     const { email, sub } = verify(token, auth.secret_refresh_token) as IPayload
     const user_id = sub
     const userTokens = await this.usersTokensRepository.findByUserIdAndRefreshToken(user_id, token)
@@ -27,6 +31,7 @@ export class RefreshTokenUseCase {
       throw new AppError('Refresh Token does not exists!')
     }
     await this.usersTokensRepository.deleteById(userTokens.id)
+
     const refresh_token = sign({ email }, auth.secret_refresh_token, {
       subject: user_id,
       expiresIn: auth.expires_in_refresh_token
@@ -39,6 +44,13 @@ export class RefreshTokenUseCase {
       user_id
     })
 
-    return refresh_token
+    const newToken = sign({}, auth.secret_token, {
+      subject: user_id,
+      expiresIn: auth.expires_in_token
+    })
+    return {
+      refresh_token,
+      token: newToken
+    }
   }
 }

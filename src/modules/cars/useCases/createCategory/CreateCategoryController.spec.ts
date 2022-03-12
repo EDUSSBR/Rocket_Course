@@ -31,11 +31,11 @@ describe('Create Category Controller', () => {
       password: 'admin'
     })
 
-    const { refresh_token } = responseToken.body
+    const { token } = responseToken.body
     const response = await request(app).post('/categories').send({
       name: 'Category Supertest',
       description: 'Category Supertest'
-    }).set({ Authorization: `Bearer ${refresh_token}` })
+    }).set({ Authorization: `Bearer ${token}` })
     expect(response.status).toBe(201)
   })
   it('Should not be able to create a new category that have the same name ', async () => {
@@ -44,11 +44,11 @@ describe('Create Category Controller', () => {
       password: 'admin'
     })
 
-    const { refresh_token } = responseToken.body
+    const { token } = responseToken.body
     const response = await request(app).post('/categories').send({
       name: 'Category Supertest',
       description: 'Category Supertest'
-    }).set({ Authorization: `Bearer ${refresh_token}` })
+    }).set({ Authorization: `Bearer ${token}` })
     expect(response.status).toBe(400)
   })
 })
